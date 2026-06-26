@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AM.PM — функциональная вода в ритме твоего дня: утро, день и вечер."
+    />
+    <title>AM.PM — функциональная вода</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="loader" id="loader" aria-label="Загрузка AM.PM">
+      <div class="loader__clock">
+        <img src="public/assets/clock-dial.png" alt="" />
+        <div class="loader__time" id="loaderTime">08:00</div>
+      </div>
+      <div class="loader__caption">в ритме твоего дня</div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="AM.PM">
+        <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#sku">SKU</a>
+        <a href="#rhythm">Ритм</a>
+        <a href="#inside">Состав</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero__copy reveal">
+          <p class="eyebrow">функциональная вода / 500 мл / без сахара</p>
+          <h1>AM.PM</h1>
+          <p class="hero__lead">
+            Коллекция напитков, созданная сопровождать весь твой день в его
+            естественном ритме.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--dark" href="#sku">Выбрать время</a>
+            <a class="button button--ghost" href="#rhythm">Смотреть ритм</a>
+          </div>
+        </div>
+        <div class="hero__visual reveal">
+          <div class="sun sun--morning"></div>
+          <img class="hero__bottles" src="public/assets/bottles-trio.png" alt="Три бутылки AM.PM" />
+          <div class="hero__ticker" aria-hidden="true">
+            <span>08:00 утро</span>
+            <span>14:30 день</span>
+            <span>20:00 вечер</span>
+            <span>08:00 утро</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="video-band section reveal" aria-label="Брендовая анимация AM.PM">
+        <video autoplay muted loop playsinline src="public/assets/a 1.mp4"></video>
+        <div class="video-band__overlay">
+          <p>eyes opened, vibes on*</p>
+          <p>hydration is power*</p>
+          <p>less stress, more rest*</p>
+        </div>
+      </section>
+
+      <section class="sku section" id="sku">
+        <div class="section-heading reveal">
+          <p class="eyebrow">3 SKU</p>
+          <h2>Три состояния одного дня</h2>
+        </div>
+        <div class="sku-grid">
+          <article class="sku-card sku-card--morning reveal">
+            <div class="sku-card__top">
+              <span>08:00</span>
+              <strong>утро</strong>
+            </div>
+            <div class="bottle bottle--morning" aria-hidden="true">
+              <span>08:00</span>
+            </div>
+            <h3>Ясное пробуждение и тонус</h3>
+            <p>Спелый грейпфрут, лимон и клюква. Витамины группы B, магний, кальций и экстракт кофеина.</p>
+          </article>
+
+          <article class="sku-card sku-card--day reveal">
+            <div class="sku-card__top">
+              <span>14:30</span>
+              <strong>день</strong>
+            </div>
+            <div class="bottle bottle--day" aria-hidden="true">
+              <span>14:30</span>
+            </div>
+            <h3>Устойчивая энергия и концентрация</h3>
+            <p>Ягоды, тропические фрукты и эффект холодка. Электролиты, витамины B и растительные экстракты.</p>
+          </article>
+
+          <article class="sku-card sku-card--evening reveal">
+            <div class="sku-card__top">
+              <span>20:00</span>
+              <strong>вечер</strong>
+            </div>
+            <div class="bottle bottle--evening" aria-hidden="true">
+              <span>20:00</span>
+            </div>
+            <h3>Мягкое восстановление и расслабление</h3>
+            <p>Сочный лайм и базилик. Витамины B3, B5, B6 и магний для спокойного финала дня.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="rhythm section" id="rhythm">
+        <div class="rhythm__intro reveal">
+          <p class="eyebrow">body battery</p>
+          <h2>Напиток подстраивается под момент</h2>
+          <p>
+            Утром AM.PM включает день, в середине поддерживает движение, а вечером
+            помогает вернуть баланс.
+          </p>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline__line"></div>
+          <div class="timeline__item">
+            <img src="public/assets/time-morning.png" alt="08:00" />
+            <span>пробуждайся в настроении</span>
+          </div>
+          <div class="timeline__item">
+            <img src="public/assets/time-day.png" alt="14:30" />
+            <span>оставайся в движении</span>
+          </div>
+          <div class="timeline__item">
+            <img src="public/assets/time-evening.png" alt="20:00" />
+            <span>восстанови баланс</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="inside section" id="inside">
+        <div class="section-heading reveal">
+          <p class="eyebrow">внутри</p>
+          <h2>Формулы без сахара</h2>
+        </div>
+        <div class="facts-grid">
+          <img class="reveal" src="public/assets/facts-morning.png" alt="Состав AM.PM утро" />
+          <img class="reveal" src="public/assets/facts-day.png" alt="Состав AM.PM день" />
+          <img class="reveal" src="public/assets/facts-evening.png" alt="Состав AM.PM вечер" />
+        </div>
+      </section>
+
+      <section class="mood section">
+        <div class="mood__copy reveal">
+          <p class="eyebrow">визуальный язык</p>
+          <h2>Ярко, чисто, внятно</h2>
+          <p>
+            Сайт держит брендовый контраст AM.PM: крупная типографика, простая
+            графика, ритм часов и чистые цветовые блоки для каждого SKU.
+          </p>
+        </div>
+        <div class="mood__faces reveal" aria-hidden="true">
+          <img src="public/assets/face-morning.png" alt="" />
+          <img src="public/assets/face-day.png" alt="" />
+          <img src="public/assets/face-evening.png" alt="" />
+        </div>
+      </section>
+
+      <section class="contact section" id="contact">
+        <div class="contact__panel reveal">
+          <img src="public/assets/sku-strip.png" alt="Линейка AM.PM" />
+          <h2>AM.PM — в ритме твоего дня</h2>
+          <p>Готовый лендинг-визитка для презентации продукта, запуска и сбора первых заявок.</p>
+          <a class="button button--dark" href="mailto:hello@ampm.water">Связаться</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>AM.PM</span>
+      <span>Не является лекарственным средством.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
