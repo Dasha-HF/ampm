@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="AM.PM — функциональная вода в ритме твоего дня: утро, день и вечер."
+      content="AM.PM — функциональная вода под ритм дня: 08:00, 14:30 и 20:00."
     />
     <title>AM.PM — функциональная вода</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260630-5" />
   </head>
   <body>
     <div class="loader" id="loader" aria-label="Загрузка AM.PM">
@@ -24,159 +24,353 @@
         <img src="public/assets/logo-ampm.png" alt="AM.PM" />
       </a>
       <nav class="nav" aria-label="Основная навигация">
-        <a href="#sku">SKU</a>
-        <a href="#rhythm">Ритм</a>
-        <a href="#inside">Состав</a>
-        <a href="#contact">Контакт</a>
+        <a href="#about">О нас</a>
+        <a href="#flavors">Вкусы</a>
+        <a href="#buy">Купить</a>
+        <a href="#contact">Контакты</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero section">
-        <div class="hero__copy reveal">
-          <p class="eyebrow">функциональная вода / 500 мл / без сахара</p>
+      <section class="hero poster section" data-theme="morning">
+        <div class="clock-face" aria-hidden="true"></div>
+        <div class="poster__copy reveal">
+          <p class="eyebrow">Functional Water // Функциональная вода</p>
           <h1>AM.PM</h1>
-          <p class="hero__lead">
-            Коллекция напитков, созданная сопровождать весь твой день в его
-            естественном ритме.
+          <p class="poster__tagline">В ритме твоего дня</p>
+          <div class="time-pills" aria-label="Линейка AM.PM">
+            <a href="#morning"><span>08:00</span> утро</a>
+            <a href="#day"><span>14:30</span> день</a>
+            <a href="#evening"><span>20:00</span> вечер</a>
+          </div>
+          <a class="button button--dark" href="#flavors">Выбрать свой ритм</a>
+        </div>
+        <div class="poster__visual reveal">
+          <div class="poster__sun"></div>
+          <img class="poster__bottles" src="public/assets/bottles-trio.png" alt="Линейка AM.PM 08:00, 14:30, 20:00" />
+          <div class="poster__stamp poster__stamp--one">eyes opened, vibes on</div>
+          <div class="poster__stamp poster__stamp--two">hydration is power</div>
+          <div class="poster__stamp poster__stamp--three">less stress, more rest</div>
+        </div>
+        <div class="poster__ticker" aria-hidden="true">
+          <span>08:00 / 14:30 / 20:00 / AM.PM / </span>
+          <span>08:00 / 14:30 / 20:00 / AM.PM / </span>
+        </div>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="about__text reveal">
+          <p class="eyebrow">О нас</p>
+          <h2>Три вкуса — три настроения — один естественный ритм</h2>
+          <p>
+            AM.PM — это функциональная вода для разных состояний дня. Утром
+            помогает мягко включиться в ритм, днем поддерживает активность и
+            концентрацию, вечером помогает замедлиться и восстановиться.
           </p>
-          <div class="hero__actions">
-            <a class="button button--dark" href="#sku">Выбрать время</a>
-            <a class="button button--ghost" href="#rhythm">Смотреть ритм</a>
-          </div>
         </div>
-        <div class="hero__visual reveal">
-          <div class="sun sun--morning"></div>
-          <img class="hero__bottles" src="public/assets/bottles-trio.png" alt="Три бутылки AM.PM" />
-          <div class="hero__ticker" aria-hidden="true">
-            <span>08:00 утро</span>
-            <span>14:30 день</span>
-            <span>20:00 вечер</span>
-            <span>08:00 утро</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="video-band section reveal" aria-label="Брендовая анимация AM.PM">
-        <video autoplay muted loop playsinline src="public/assets/a 1.mp4"></video>
-        <div class="video-band__overlay">
-          <p>eyes opened, vibes on*</p>
-          <p>hydration is power*</p>
-          <p>less stress, more rest*</p>
-        </div>
-      </section>
-
-      <section class="sku section" id="sku">
-        <div class="section-heading reveal">
-          <p class="eyebrow">3 SKU</p>
-          <h2>Три состояния одного дня</h2>
-        </div>
-        <div class="sku-grid">
-          <article class="sku-card sku-card--morning reveal">
-            <div class="sku-card__top">
-              <span>08:00</span>
-              <strong>утро</strong>
-            </div>
-            <div class="bottle bottle--morning" aria-hidden="true">
-              <span>08:00</span>
-            </div>
-            <h3>Ясное пробуждение и тонус</h3>
-            <p>Спелый грейпфрут, лимон и клюква. Витамины группы B, магний, кальций и экстракт кофеина.</p>
-          </article>
-
-          <article class="sku-card sku-card--day reveal">
-            <div class="sku-card__top">
-              <span>14:30</span>
-              <strong>день</strong>
-            </div>
-            <div class="bottle bottle--day" aria-hidden="true">
-              <span>14:30</span>
-            </div>
-            <h3>Устойчивая энергия и концентрация</h3>
-            <p>Ягоды, тропические фрукты и эффект холодка. Электролиты, витамины B и растительные экстракты.</p>
-          </article>
-
-          <article class="sku-card sku-card--evening reveal">
-            <div class="sku-card__top">
-              <span>20:00</span>
-              <strong>вечер</strong>
-            </div>
-            <div class="bottle bottle--evening" aria-hidden="true">
-              <span>20:00</span>
-            </div>
-            <h3>Мягкое восстановление и расслабление</h3>
-            <p>Сочный лайм и базилик. Витамины B3, B5, B6 и магний для спокойного финала дня.</p>
-          </article>
+        <div class="about__orbit reveal" aria-hidden="true">
+          <div class="orbit-ring"></div>
+          <span class="orbit-time orbit-time--morning">08:00</span>
+          <span class="orbit-time orbit-time--day">14:30</span>
+          <span class="orbit-time orbit-time--evening">20:00</span>
+          <img src="public/assets/logo-ampm.png" alt="" />
         </div>
       </section>
 
       <section class="rhythm section" id="rhythm">
-        <div class="rhythm__intro reveal">
-          <p class="eyebrow">body battery</p>
-          <h2>Напиток подстраивается под момент</h2>
-          <p>
-            Утром AM.PM включает день, в середине поддерживает движение, а вечером
-            помогает вернуть баланс.
-          </p>
-        </div>
-        <div class="timeline reveal">
-          <div class="timeline__line"></div>
-          <div class="timeline__item">
-            <img src="public/assets/time-morning.png" alt="08:00" />
-            <span>пробуждайся в настроении</span>
-          </div>
-          <div class="timeline__item">
-            <img src="public/assets/time-day.png" alt="14:30" />
-            <span>оставайся в движении</span>
-          </div>
-          <div class="timeline__item">
-            <img src="public/assets/time-evening.png" alt="20:00" />
-            <span>восстанови баланс</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="inside section" id="inside">
         <div class="section-heading reveal">
-          <p class="eyebrow">внутри</p>
-          <h2>Формулы без сахара</h2>
+          <p class="eyebrow">День как часы</p>
+          <h2>Утро → день → вечер</h2>
         </div>
-        <div class="facts-grid">
-          <img class="reveal" src="public/assets/facts-morning.png" alt="Состав AM.PM утро" />
-          <img class="reveal" src="public/assets/facts-day.png" alt="Состав AM.PM день" />
-          <img class="reveal" src="public/assets/facts-evening.png" alt="Состав AM.PM вечер" />
-        </div>
-      </section>
-
-      <section class="mood section">
-        <div class="mood__copy reveal">
-          <p class="eyebrow">визуальный язык</p>
-          <h2>Ярко, чисто, внятно</h2>
-          <p>
-            Сайт держит брендовый контраст AM.PM: крупная типографика, простая
-            графика, ритм часов и чистые цветовые блоки для каждого SKU.
-          </p>
-        </div>
-        <div class="mood__faces reveal" aria-hidden="true">
-          <img src="public/assets/face-morning.png" alt="" />
-          <img src="public/assets/face-day.png" alt="" />
-          <img src="public/assets/face-evening.png" alt="" />
+        <div class="rhythm-track reveal">
+          <div class="rhythm-track__line"></div>
+          <a href="#morning" class="rhythm-step rhythm-step--morning">
+            <span>08:00</span>
+            <strong>Тонус с самого утра</strong>
+          </a>
+          <a href="#day" class="rhythm-step rhythm-step--day">
+            <span>14:30</span>
+            <strong>Активность в течение дня</strong>
+          </a>
+          <a href="#evening" class="rhythm-step rhythm-step--evening">
+            <span>20:00</span>
+            <strong>Спокойствие в конце дня</strong>
+          </a>
         </div>
       </section>
 
-      <section class="contact section" id="contact">
-        <div class="contact__panel reveal">
-          <img src="public/assets/sku-strip.png" alt="Линейка AM.PM" />
-          <h2>AM.PM — в ритме твоего дня</h2>
-          <p>Готовый лендинг-визитка для презентации продукта, запуска и сбора первых заявок.</p>
-          <a class="button button--dark" href="mailto:hello@ampm.water">Связаться</a>
+      <section class="flavors" id="flavors" aria-label="Вкусы AM.PM">
+        <article class="product-section product-section--morning section" id="morning" data-theme="morning">
+          <div class="product-section__time reveal">08:00</div>
+          <div class="product-section__copy reveal">
+            <p class="eyebrow">Утро</p>
+            <h2>Утренний напиток</h2>
+            <h3>Грейпфрут, лимон и клюква</h3>
+            <p>
+              Тонус с самого утра. Без сахара. С натуральными экстрактами,
+              витаминами группы B, магнием и кальцием.
+            </p>
+            <ul class="benefit-list">
+              <li>ясное пробуждение</li>
+              <li>мягкий тонус</li>
+              <li>легкий цитрусовый вкус</li>
+            </ul>
+            <a class="button button--dark" href="#buy">Купить 08:00</a>
+          </div>
+          <div class="product-section__visual reveal">
+            <div class="product-motion product-motion--morning" aria-label="Анимация AM.PM 08:00">
+              <video autoplay muted loop playsinline src="public/assets/a 1.mp4"></video>
+            </div>
+            <div class="product-clock" aria-hidden="true"></div>
+            <div class="product-bottle product-bottle--morning" aria-hidden="true"><span>08:00</span></div>
+            <div class="sticker sticker--morning">eyes opened, vibes on</div>
+          </div>
+        </article>
+
+        <section class="composition composition--morning section" data-theme="morning" aria-label="Состав утреннего напитка AM.PM 08:00">
+          <div class="composition__label reveal">
+            <span>08:00</span>
+            <p>состав утра</p>
+          </div>
+          <div class="composition__copy reveal">
+            <p class="eyebrow">Что внутри</p>
+            <h2>Витаминный старт без сахара</h2>
+            <p>
+              Цитрусовая формула для мягкого включения в день: витамины группы B,
+              минералы и натуральный кофеиновый экстракт.
+            </p>
+          </div>
+          <div class="composition-grid">
+            <article class="composition-card reveal">
+              <strong>B3 / B5 / B6 / B7 / B9 / B12</strong>
+              <span>витамины группы B</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>магний + кальций</strong>
+              <span>поддержка тонуса</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>экстракт кофеина</strong>
+              <span>мягкое пробуждение</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>500 мл</strong>
+              <span>без сахара</span>
+            </article>
+          </div>
+          <details class="composition-details reveal">
+            <summary>Показать подробный состав</summary>
+            <img src="public/assets/facts-morning.png" alt="Подробный состав AM.PM 08:00" />
+          </details>
+          <div class="composition-bridge" aria-hidden="true">
+            <span>08:00</span>
+            <span>14:30</span>
+          </div>
+        </section>
+
+        <article class="product-section product-section--day section" id="day" data-theme="day">
+          <div class="product-section__time reveal">14:30</div>
+          <div class="product-section__copy reveal">
+            <p class="eyebrow">День</p>
+            <h2>Дневной напиток</h2>
+            <h3>Ягоды и тропические фрукты с эффектом холодка</h3>
+            <p>
+              Активность в течение дня. Для перезагрузки, концентрации и
+              восполнения водно-солевого баланса.
+            </p>
+            <ul class="benefit-list">
+              <li>устойчивая энергия</li>
+              <li>концентрация</li>
+              <li>водно-солевой баланс</li>
+            </ul>
+            <a class="button button--dark" href="#buy">Купить 14:30</a>
+          </div>
+          <div class="product-section__visual reveal">
+            <div class="product-motion product-motion--day" aria-label="Анимация AM.PM 14:30">
+              <video autoplay muted loop playsinline src="public/assets/a 2.mp4"></video>
+            </div>
+            <div class="product-clock" aria-hidden="true"></div>
+            <div class="product-bottle product-bottle--day" aria-hidden="true"><span>14:30</span></div>
+            <div class="sticker sticker--day">hydration is power</div>
+          </div>
+        </article>
+
+        <section class="composition composition--day section" data-theme="day" aria-label="Состав дневного напитка AM.PM 14:30">
+          <div class="composition__label reveal">
+            <span>14:30</span>
+            <p>состав дня</p>
+          </div>
+          <div class="composition__copy reveal">
+            <p class="eyebrow">Что внутри</p>
+            <h2>Баланс для движения</h2>
+            <p>
+              Дневная формула собрана вокруг активности, концентрации и
+              восполнения водно-солевого баланса.
+            </p>
+          </div>
+          <div class="composition-grid">
+            <article class="composition-card reveal">
+              <strong>B3 / B5 / B6 / B7 / B9 / B12</strong>
+              <span>витамины группы B</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>калий + натрий</strong>
+              <span>водно-солевой баланс</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>магний</strong>
+              <span>поддержка энергии</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>500 мл</strong>
+              <span>без сахара</span>
+            </article>
+          </div>
+          <details class="composition-details reveal">
+            <summary>Показать подробный состав</summary>
+            <img src="public/assets/facts-day.png" alt="Подробный состав AM.PM 14:30" />
+          </details>
+          <div class="composition-bridge" aria-hidden="true">
+            <span>14:30</span>
+            <span>20:00</span>
+          </div>
+        </section>
+
+        <article class="product-section product-section--evening section" id="evening" data-theme="evening">
+          <div class="product-section__time reveal">20:00</div>
+          <div class="product-section__copy reveal">
+            <p class="eyebrow">Вечер</p>
+            <h2>Вечерний напиток</h2>
+            <h3>Сочный лайм и базилик</h3>
+            <p>
+              Спокойствие в конце дня. Для расслабления вечером и мягкого
+              восстановления. Без сахара.
+            </p>
+            <ul class="benefit-list">
+              <li>замедление ритма</li>
+              <li>расслабление</li>
+              <li>восстановление баланса</li>
+            </ul>
+            <a class="button button--dark" href="#buy">Купить 20:00</a>
+          </div>
+          <div class="product-section__visual reveal">
+            <div class="product-motion product-motion--evening" aria-label="Анимация AM.PM 20:00">
+              <video autoplay muted loop playsinline src="public/assets/a 3.mp4"></video>
+            </div>
+            <div class="product-clock" aria-hidden="true"></div>
+            <div class="product-bottle product-bottle--evening" aria-hidden="true"><span>20:00</span></div>
+            <div class="sticker sticker--evening">less stress, more rest</div>
+          </div>
+        </article>
+
+        <section class="composition composition--evening section" data-theme="evening" aria-label="Состав вечернего напитка AM.PM 20:00">
+          <div class="composition__label reveal">
+            <span>20:00</span>
+            <p>состав вечера</p>
+          </div>
+          <div class="composition__copy reveal">
+            <p class="eyebrow">Что внутри</p>
+            <h2>Спокойная формула на вечер</h2>
+            <p>
+              Лайм и базилик в сочетании с витаминами группы B и магнием для
+              расслабления и восстановления баланса.
+            </p>
+          </div>
+          <div class="composition-grid">
+            <article class="composition-card reveal">
+              <strong>B3 / B5 / B6</strong>
+              <span>витамины группы B</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>магний</strong>
+              <span>мягкое восстановление</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>лайм + базилик</strong>
+              <span>травяной вкус</span>
+            </article>
+            <article class="composition-card reveal">
+              <strong>500 мл</strong>
+              <span>без сахара</span>
+            </article>
+          </div>
+          <details class="composition-details reveal">
+            <summary>Показать подробный состав</summary>
+            <img src="public/assets/facts-evening.png" alt="Подробный состав AM.PM 20:00" />
+          </details>
+          <div class="composition-bridge" aria-hidden="true">
+            <span>20:00</span>
+            <span>AM.PM</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="advantages section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Преимущества</p>
+          <h2>Функция без лишней сложности</h2>
+        </div>
+        <div class="advantage-grid">
+          <article class="advantage-card reveal">
+            <span>01</span>
+            <h3>Натуральные экстракты</h3>
+            <p>Вкусы построены на понятных фруктовых и травяных сочетаниях.</p>
+          </article>
+          <article class="advantage-card reveal">
+            <span>02</span>
+            <h3>Функциональный состав</h3>
+            <p>Каждый напиток отвечает за свое состояние: тонус, активность или расслабление.</p>
+          </article>
+          <article class="advantage-card reveal">
+            <span>03</span>
+            <h3>Без сахара</h3>
+            <p>Легкий вкус без лишней сладости.</p>
+          </article>
+          <article class="advantage-card reveal">
+            <span>04</span>
+            <h3>Под ритм дня</h3>
+            <p>08:00, 14:30 и 20:00 — напитки под разные моменты дня.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="video-band section reveal" aria-label="Брендовая анимация AM.PM">
+        <div class="video-band__copy">
+          <p>eyes opened, vibes on</p>
+          <p>hydration is power</p>
+          <p>less stress, more rest</p>
+        </div>
+        <video autoplay muted loop playsinline src="public/assets/a 1.mp4"></video>
+      </section>
+
+      <section class="kit section" id="buy">
+        <div class="kit__visual reveal">
+          <img src="public/assets/bottles-trio.png" alt="Набор AM.PM из трех вкусов" />
+        </div>
+        <div class="kit__copy reveal">
+          <p class="eyebrow">Купить</p>
+          <h2>Собери свой день с AM.PM</h2>
+          <div class="kit-list">
+            <span>08:00 — проснуться</span>
+            <span>14:30 — перезагрузиться</span>
+            <span>20:00 — расслабиться</span>
+          </div>
+          <a class="button button--dark" href="mailto:Reception.HQ@napitkivmeste.ru">Купи свой AM.PM</a>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <span>AM.PM</span>
-      <span>Не является лекарственным средством.</span>
+    <footer class="footer" id="contact">
+      <div class="footer__brand">
+        <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+      </div>
+      <div class="footer__contacts">
+        <p>121614, г. Москва, ул. Крылатская, д. 17, корпус 1, Бизнес-парк «Крылатские холмы»</p>
+        <a href="tel:+74959255140">+7 (495) 925-51-40</a>
+        <a href="tel:+78003338101">+7 (800) 333-81-01</a>
+        <a href="mailto:Reception.HQ@napitkivmeste.ru">Reception.HQ@napitkivmeste.ru</a>
+      </div>
+      <a class="footer__top" href="#top">Наверх</a>
     </footer>
 
     <script src="script.js"></script>

@@ -1,8 +1,11 @@
 const loader = document.querySelector("#loader");
 const loaderTime = document.querySelector("#loaderTime");
 const revealItems = document.querySelectorAll(".reveal");
+const themeSections = document.querySelectorAll("[data-theme]");
+const compositionDetails = document.querySelectorAll(".composition-details");
 
 document.body.classList.add("is-loading");
+document.body.classList.add("theme-morning");
 
 const loaderTimes = ["08:00", "11:24", "14:30", "18:06", "20:00"];
 let loaderIndex = 0;
@@ -40,17 +43,49 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
-const cards = document.querySelectorAll(".sku-card");
+const themeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      document.body.classList.remove("theme-morning", "theme-day", "theme-evening");
+      document.body.classList.add(`theme-${entry.target.dataset.theme}`);
+    });
+  },
+  {
+    threshold: 0.46,
+  },
+);
+
+themeSections.forEach((section) => themeObserver.observe(section));
+
+const cards = document.querySelectorAll(".product-section__visual, .advantage-card");
 
 cards.forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 6}deg)`;
+    card.style.transform = `perspective(900px) rotateX(${y * -4}deg) rotateY(${x * 5}deg)`;
   });
 
   card.addEventListener("pointerleave", () => {
     card.style.transform = "";
+  });
+});
+
+compositionDetails.forEach((details) => {
+  details.addEventListener("toggle", () => {
+    if (!details.open) {
+      return;
+    }
+
+    compositionDetails.forEach((otherDetails) => {
+      if (otherDetails !== details) {
+        otherDetails.open = false;
+      }
+    });
   });
 });
