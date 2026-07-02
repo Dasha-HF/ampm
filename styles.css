@@ -907,6 +907,18 @@ h3 {
   overflow: hidden;
 }
 
+.composition--morning .composition-details {
+  background: #f3f524;
+}
+
+.composition--day .composition-details {
+  background: #50d0d1;
+}
+
+.composition--evening .composition-details {
+  background: #bda9ed;
+}
+
 .composition-details summary {
   min-height: 54px;
   display: flex;
@@ -919,6 +931,7 @@ h3 {
   font-weight: 950;
   text-transform: uppercase;
   list-style: none;
+  background: inherit;
 }
 
 .composition-details summary::-webkit-details-marker {
@@ -940,7 +953,7 @@ h3 {
   max-height: 720px;
   object-fit: contain;
   border-top: 2px solid var(--ink);
-  background: #f8f2e8;
+  background: inherit;
 }
 
 .advantages {
