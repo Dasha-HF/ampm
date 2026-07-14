@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 920" role="img" aria-label="Decorative AM.PM direction arrows">
+  <defs>
+    <filter id="soft-shadow" x="-18%" y="-18%" width="136%" height="136%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#050505" flood-opacity="0.18" />
+    </filter>
+    <style>
+      .arrow-fill {
+        fill: #050505;
+        stroke: #050505;
+        stroke-linejoin: round;
+        stroke-width: 3;
+      }
+
+      .arrow-cutout {
+        fill: #2d2d2d;
+      }
+    </style>
+  </defs>
+  <g filter="url(#soft-shadow)" opacity="0.96">
+    <path
+      class="arrow-fill"
+      d="M179 292c-22 0-37-5-43-16-7-13 3-32 28-58l95-97c21-22 38-33 51-33 16 0 29 16 45 43l62 105c14 24 17 42 8 54-8 10-22 15-43 15h-21l-1 170c0 23-13 36-36 36h-65c-25 0-38-14-39-39l-6-168-35-12z"
+    />
+    <path
+      class="arrow-cutout"
+      d="M296 151c5-5 10-8 13-7 4 1 9 7 15 18l43 76c7 13 9 22 5 27-4 6-14 7-29 4l-19-3c-10-2-18 6-18 16l-1 181c0 9-4 13-13 13h-27c-9 0-14-5-14-14l-7-185c0-9-7-15-16-16l-28-3c-13-1-17-7-7-17l103-90z"
+    />
+    <path
+      class="arrow-fill"
+      d="M323 623c-24-24-29-42-16-55 13-13 31-9 55 15l146 145 29-31c17-18 34-24 48-17 13 7 18 24 16 50l-13 147c-2 31-10 50-24 58-13 8-32 5-58-8l-137-69c-23-12-35-25-34-40 1-14 14-26 38-35l28-11-78-149z"
+    />
+    <path
+      class="arrow-cutout"
+      d="M364 632c-9-9-9-16-3-22 6-6 13-5 22 4l139 139c8 8 20 7 27-1l21-23c9-10 16-8 15 6l-13 125c-1 15-6 23-13 25-6 2-15 0-27-6l-116-58c-12-6-12-13 1-18l29-11c10-4 14-16 9-25l-91-135z"
+    />
+    <circle class="arrow-fill" cx="307" cy="568" r="55" />
+    <circle class="arrow-cutout" cx="307" cy="568" r="25" />
+    <path
+      class="arrow-fill"
+      d="M292 555c8-7 17-3 19 7 2 9 9 16 18 18 11 2 14 12 6 20-11 12-32 7-45-6-13-13-9-30 2-39z"
+      opacity="0.9"
+    />
+  </g>
+</svg>

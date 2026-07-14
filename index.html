@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="AM.PM – функциональная вода под ритм дня: 08:00, 14:30 и 20:00."
+      content="AM.PM – напиток с функциональными добавками под ритм дня: 08:00, 14:30 и 20:00."
     />
-    <title>AM.PM – функциональная вода</title>
-    <link rel="stylesheet" href="styles.css?v=20260709-01" />
+    <title>AM.PM – напиток с функциональными добавками</title>
+    <link rel="icon" href="public/assets/logo-ampm.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css?v=20260713-13" />
   </head>
   <body>
     <div class="loader" id="loader" aria-label="Загрузка AM.PM">
@@ -21,7 +22,9 @@
 
     <header class="site-header">
       <a class="brand" href="#top" aria-label="AM.PM">
-        <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+        <span class="ampm-logo-mark">
+          <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+        </span>
       </a>
       <nav class="nav" aria-label="Основная навигация">
         <a href="#about">О нас</a>
@@ -33,33 +36,47 @@
 
     <main id="top">
       <section class="hero poster section" data-theme="morning">
-        <div class="clock-face" aria-hidden="true"></div>
+        <img class="poster__dial" src="public/assets/generated/dial-background.png" alt="" aria-hidden="true" />
         <div class="poster__copy reveal">
-          <p class="eyebrow hero-product">Функциональная вода</p>
+          <p class="eyebrow hero-product">Напиток с функциональными добавками</p>
           <h1>AM.PM</h1>
           <p class="poster__tagline">В ритме твоего дня</p>
           <div class="time-pills" aria-label="Линейка AM.PM">
-            <div class="time-pill"><span>08:00</span> утро</div>
-            <div class="time-pill"><span>14:30</span> день</div>
-            <div class="time-pill"><span>20:00</span> вечер</div>
+            <a class="time-pill" href="#morning"><span>08:00</span> утро</a>
+            <a class="time-pill" href="#day"><span>14:30</span> день</a>
+            <a class="time-pill" href="#evening"><span>20:00</span> вечер</a>
           </div>
           <a class="button button--dark" href="#flavors">Выбрать свой ритм</a>
         </div>
         <div class="poster__visual reveal">
           <div class="poster__sun"></div>
           <img class="poster__bottles" src="public/assets/generated/packshot-trio.png" alt="Линейка AM.PM 08:00, 14:30, 20:00" />
-          <div class="poster__stamp poster__stamp--one">eyes opened,<br />vibes on</div>
-          <div class="poster__stamp poster__stamp--two">hydration is power</div>
-          <div class="poster__stamp poster__stamp--three">less stress,<br />more rest</div>
+          <div class="poster__stamp poster__stamp--one">тонус с самого утра</div>
+          <div class="poster__stamp poster__stamp--two">активность в течение дня</div>
+          <div class="poster__stamp poster__stamp--three">мягкое восстановление</div>
         </div>
         <div class="poster__ticker" aria-hidden="true">
+          <div class="poster__ticker-track">
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+            <span>/ AM.PM / 08:00 / 14:30 / 20:00</span>
+          </div>
         </div>
       </section>
 
       <section class="about section" id="about">
         <div class="about__text reveal">
           <p class="eyebrow">О нас</p>
-          <h2>Функциональная вода, которая живет в ритме твоего дня.</h2>
+          <h2>AM.PM - напиток, который живет в ритме твоего дня.</h2>
           <p class="about__manifest">Три времени. Три состояния. Один ритм.</p>
           <p class="about__daily-rhythm">
             <span>Утренний AM.PM мягко включает в день<br />и помогает поймать бодрый настрой.</span>
@@ -74,7 +91,9 @@
             <span class="orbit-time orbit-time--day">14:30</span>
             <span class="orbit-time orbit-time--evening">20:00</span>
           </div>
-          <img src="public/assets/logo-ampm.png" alt="" />
+          <span class="ampm-logo-mark">
+            <img src="public/assets/logo-ampm.png" alt="" />
+          </span>
         </div>
       </section>
 
@@ -127,11 +146,11 @@
           </div>
           <div class="product-section__visual reveal">
             <div class="product-motion product-motion--morning" aria-label="Анимация AM.PM 08:00">
-              <video autoplay muted loop playsinline src="public/assets/for800.mp4?v=20260701"></video>
+              <video autoplay muted loop playsinline poster="public/assets/generated/packshot-08.png" src="public/assets/for800.mp4?v=20260701"></video>
             </div>
             <div class="product-clock" aria-hidden="true"></div>
             <img class="product-packshot product-packshot--morning" src="public/assets/generated/packshot-08.png" alt="AM.PM 08:00" />
-            <div class="sticker sticker--morning">eyes opened,<br />vibes on</div>
+            <div class="sticker sticker--morning">тонус с самого утра</div>
           </div>
         </article>
 
@@ -191,11 +210,11 @@
           </div>
           <div class="product-section__visual reveal">
             <div class="product-motion product-motion--day" aria-label="Анимация AM.PM 14:30">
-              <video autoplay muted loop playsinline src="public/assets/for1430.mp4?v=20260701"></video>
+              <video autoplay muted loop playsinline poster="public/assets/generated/packshot-14.png" src="public/assets/for1430.mp4?v=20260701"></video>
             </div>
             <div class="product-clock" aria-hidden="true"></div>
             <img class="product-packshot product-packshot--day" src="public/assets/generated/packshot-14.png" alt="AM.PM 14:30" />
-            <div class="sticker sticker--day">hydration is power</div>
+            <div class="sticker sticker--day">активность в течение дня</div>
           </div>
         </article>
 
@@ -255,11 +274,11 @@
           </div>
           <div class="product-section__visual reveal">
             <div class="product-motion product-motion--evening" aria-label="Анимация AM.PM 20:00">
-              <video autoplay muted loop playsinline src="public/assets/for2000.mp4?v=20260701"></video>
+              <video autoplay muted loop playsinline poster="public/assets/generated/packshot-20.png" src="public/assets/for2000.mp4?v=20260701"></video>
             </div>
             <div class="product-clock" aria-hidden="true"></div>
             <img class="product-packshot product-packshot--evening" src="public/assets/generated/packshot-20.png" alt="AM.PM 20:00" />
-            <div class="sticker sticker--evening">less stress,<br />more rest</div>
+            <div class="sticker sticker--evening">мягкое восстановление</div>
           </div>
         </article>
 
@@ -332,11 +351,16 @@
 
       <section class="video-band section reveal" aria-label="Брендовая анимация AM.PM">
         <div class="video-band__copy">
-          <p>eyes opened,<br />vibes on</p>
-          <p>hydration is power</p>
-          <p>less stress,<br />more rest</p>
+          <p>eyes opened,<br />vibes on<sup>*</sup></p>
+          <p>hydration is power<sup>*</sup></p>
+          <p>less stress,<br />more rest<sup>*</sup></p>
+          <div class="video-band__note">
+            <span>* eyes opened, vibes on (англ.) — «глаза открыты, настрой включен»</span>
+            <span>* hydration is power (англ.) — «гидратация — это сила»</span>
+            <span>* less stress, more rest (англ.) — «меньше стресса, больше отдыха»</span>
+          </div>
         </div>
-        <video autoplay muted loop playsinline src="public/assets/brand-phrases.mp4?v=20260701"></video>
+        <video autoplay muted loop playsinline poster="public/assets/bottles-trio.png" src="public/assets/brand-phrases.mp4?v=20260701"></video>
       </section>
 
       <section class="kit section" id="buy">
@@ -358,7 +382,9 @@
 
     <footer class="footer" id="contact">
       <div class="footer__brand">
-        <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+        <span class="ampm-logo-mark">
+          <img src="public/assets/logo-ampm.png" alt="AM.PM" />
+        </span>
       </div>
       <div class="footer__contacts">
         <p>121614, г. Москва, ул. Крылатская, д. 17, корпус 1, Бизнес-парк «Крылатские холмы»</p>
@@ -369,6 +395,6 @@
       <a class="footer__top" href="#top">Наверх</a>
     </footer>
 
-    <script src="script.js?v=20260707-01"></script>
+    <script src="script.js?v=20260713-04"></script>
   </body>
 </html>

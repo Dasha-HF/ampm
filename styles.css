@@ -41,6 +41,7 @@
 
 * {
   box-sizing: border-box;
+  hyphens: none;
 }
 
 html {
@@ -49,26 +50,21 @@ html {
   max-width: 100%;
   overflow-x: hidden;
   overscroll-behavior-x: none;
+  hyphens: none;
 }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 10% 8%, rgba(235, 255, 37, 0.32) 0 12vw, transparent 28vw),
-    radial-gradient(circle at 90% 42%, rgba(36, 197, 200, 0.16) 0 14vw, transparent 32vw),
-    radial-gradient(circle at 16% 78%, rgba(182, 155, 230, 0.18) 0 12vw, transparent 30vw),
-    var(--paper);
+  background: var(--paper);
   color: var(--ink);
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   overscroll-behavior-x: none;
   touch-action: pan-y;
-}
-
-body.page-mode {
-  height: 100svh;
-  overflow: hidden;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 main {
@@ -85,11 +81,7 @@ body.is-loading {
 body.theme-morning,
 body.theme-day,
 body.theme-evening {
-  background:
-    radial-gradient(circle at 10% 8%, rgba(235, 255, 37, 0.32) 0 12vw, transparent 28vw),
-    radial-gradient(circle at 90% 42%, rgba(36, 197, 200, 0.16) 0 14vw, transparent 32vw),
-    radial-gradient(circle at 16% 78%, rgba(182, 155, 230, 0.18) 0 12vw, transparent 30vw),
-    var(--paper);
+  background: var(--paper);
 }
 
 img,
@@ -170,7 +162,29 @@ a {
   backdrop-filter: blur(18px);
 }
 
-.brand img {
+.ampm-logo-mark {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.ampm-logo-mark::after {
+  content: "";
+  position: absolute;
+  top: 38%;
+  right: 1.5%;
+  width: 8%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ampm-logo-mark img {
+  width: 100%;
+  height: auto;
+}
+
+.brand .ampm-logo-mark {
   width: 66px;
 }
 
@@ -189,71 +203,6 @@ a {
   padding: clamp(56px, 6.5vw, 104px) clamp(18px, 5vw, 72px);
   background-color: transparent;
   overflow-x: hidden;
-}
-
-.page-mode main {
-  overflow: visible;
-}
-
-.page-mode .page-section {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100svh;
-  max-height: 100svh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transform: translateY(34px) scale(0.985);
-  transition:
-    opacity 0.8s ease,
-    transform 0.95s cubic-bezier(0.2, 0.9, 0.18, 1),
-    visibility 0.8s ease;
-}
-
-.page-mode .page-section.is-page-active {
-  z-index: 2;
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
-
-.page-mode .page-section.is-page-before {
-  transform: translateY(-28px) scale(0.99);
-}
-
-.page-mode .page-section.is-page-after {
-  transform: translateY(34px) scale(0.985);
-}
-
-.page-mode .poster.page-section {
-  min-height: 100svh;
-}
-
-.page-mode .page-section:not(.is-page-active) .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.page-mode .page-section.is-page-active .reveal,
-.page-mode .page-section.is-page-active.reveal {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.16s;
-}
-
-.page-mode .page-section:not(.is-page-active) .product-section__time.reveal {
-  transform: translateY(30px) rotate(180deg);
-}
-
-.page-mode .page-section.is-page-active .product-section__time.reveal {
-  transform: translateY(0) rotate(180deg);
 }
 
 .eyebrow {
@@ -276,7 +225,22 @@ h2 {
   line-height: 0.9;
   letter-spacing: 0;
   font-weight: 950;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+span,
+button,
+summary,
+li {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 h3 {
@@ -322,43 +286,37 @@ h3 {
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
   align-items: start;
   gap: clamp(18px, 3.5vw, 58px);
-  padding-top: calc(var(--header) + clamp(18px, 4vh, 46px));
+  padding-top: calc(var(--header) + clamp(30px, 5.5vh, 70px));
   padding-bottom: clamp(46px, 6vh, 62px);
-  background:
-    radial-gradient(ellipse at 0% 48%, rgba(235, 255, 37, 0.78) 0 22%, rgba(235, 255, 37, 0.34) 36%, transparent 63%),
-    radial-gradient(circle at 82% 54%, rgba(235, 255, 37, 0.68) 0 14%, transparent 33%),
-    transparent;
+  background: var(--paper);
   overflow: hidden;
   isolation: isolate;
   contain: layout paint;
 }
 
-.clock-face {
+.poster__dial {
   position: absolute;
-  width: min(45vw, 560px);
+  z-index: 0;
+  top: clamp(-260px, -26vh, -180px);
+  right: clamp(-260px, -18vw, -150px);
+  width: min(56vw, 700px);
   height: auto;
-  aspect-ratio: 1;
-  right: clamp(78px, 9vw, 150px);
-  top: 8vh;
-  border: 2px solid rgba(5, 5, 5, 0.08);
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(from -8deg, rgba(5, 5, 5, 0.22) 0deg 1deg, transparent 1deg 7.5deg),
-    radial-gradient(circle, transparent 0 64%, rgba(5, 5, 5, 0.08) 64% 65%, transparent 65%);
-  opacity: 0.75;
-  animation: slowRotate 28s linear infinite;
-  z-index: -1;
+  pointer-events: none;
+  opacity: 0.34;
+  mix-blend-mode: multiply;
 }
 
 .poster .hero-product {
   position: relative;
   z-index: 6;
   max-width: min(100%, 1220px);
-  margin-bottom: clamp(2px, 1vh, 8px);
-  font-size: clamp(52px, 5.05vw, 106px);
-  line-height: 0.88;
+  margin-bottom: clamp(8px, 1.3vh, 14px);
+  font-size: clamp(11px, 3.35vw, 19px);
+  line-height: 1;
   font-weight: 950;
   white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
   letter-spacing: 0;
   transform: none;
 }
@@ -397,14 +355,19 @@ h3 {
 }
 
 .time-pills {
+  position: relative;
+  z-index: 12;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   max-width: 620px;
   margin-bottom: 14px;
+  pointer-events: auto;
 }
 
 .time-pill {
+  position: relative;
+  z-index: 1;
   min-height: 56px;
   display: flex;
   flex-direction: column;
@@ -417,6 +380,8 @@ h3 {
   font-weight: 950;
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .time-pills span {
@@ -440,8 +405,9 @@ h3 {
   width: min(42vw, 420px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--morning-hot);
-  box-shadow: 0 0 90px rgba(235, 255, 37, 0.64);
+  background: rgba(235, 255, 37, 0.24);
+  box-shadow: none;
+  opacity: 0.38;
   animation: pulseSun 5s ease-in-out infinite;
 }
 
@@ -459,16 +425,16 @@ h3 {
 .poster__stamp,
 .sticker {
   position: absolute;
-  z-index: 2;
-  max-width: 170px;
+  z-index: 4;
+  max-width: min(300px, 82vw);
   border: 2px solid var(--ink);
   border-radius: var(--radius);
-  padding: 12px 14px;
+  padding: 12px 16px;
   background: var(--paper);
-  font-size: clamp(13px, 1.1vw, 17px);
-  line-height: 0.9;
+  font-size: clamp(12px, 1.05vw, 17px);
+  line-height: 1;
   font-weight: 950;
-  text-transform: lowercase;
+  white-space: nowrap;
   box-shadow: 8px 8px 0 var(--ink);
 }
 
@@ -489,26 +455,41 @@ h3 {
 
 .poster__stamp--three {
   left: 5%;
-  bottom: 4%;
+  bottom: 16%;
   transform: rotate(6deg);
   background: var(--evening);
 }
 
 .poster__ticker {
+  --ticker-size: clamp(38px, 5vw, 72px);
   position: absolute;
   left: 0;
   right: 0;
   bottom: clamp(10px, 2vh, 20px);
   width: 100%;
-  height: clamp(34px, 5vw, 72px);
+  height: calc(var(--ticker-size) * 1.08);
   overflow: hidden;
   contain: strict;
   white-space: nowrap;
-  background-image: url("data:image/svg+xml,%3Csvg width='2400' height='90' viewBox='0 0 2400 90' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='70' fill='%23050505' fill-opacity='.12' font-family='Arial, Helvetica, sans-serif' font-size='72' font-weight='900'%3E/ 08:00 / 14:30 / 20:00 / AM.PM %3C/text%3E%3Ctext x='1200' y='70' fill='%23050505' fill-opacity='.12' font-family='Arial, Helvetica, sans-serif' font-size='72' font-weight='900'%3E/ 08:00 / 14:30 / 20:00 / AM.PM %3C/text%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  animation: tickerMove 22s linear infinite;
   pointer-events: none;
+}
+
+.poster__ticker-track {
+  display: inline-flex;
+  width: max-content;
+  min-width: 200vw;
+  color: rgba(5, 5, 5, 0.12);
+  font-size: var(--ticker-size);
+  line-height: 1;
+  font-weight: 950;
+  white-space: nowrap;
+  animation: tickerMove 58s linear infinite;
+  will-change: transform;
+}
+
+.poster__ticker-track span {
+  flex: 0 0 auto;
+  padding-right: 0.42em;
 }
 
 .about {
@@ -558,6 +539,7 @@ h3 {
   margin-bottom: 18px;
   font-size: clamp(32px, 3.45vw, 54px);
   line-height: 0.98;
+  overflow-wrap: anywhere;
 }
 
 .about__manifest {
@@ -592,7 +574,7 @@ h3 {
   z-index: 3;
 }
 
-.about__orbit img {
+.about__orbit .ampm-logo-mark {
   position: relative;
   z-index: 2;
   width: min(34%, 180px);
@@ -854,6 +836,10 @@ h3 {
   --section-accent: var(--day);
 }
 
+.product-section--day .product-section__time {
+  margin-top: calc(clamp(50px, 5.8vw, 84px) - 16px);
+}
+
 .product-section--evening {
   --section-accent: var(--evening);
 }
@@ -884,15 +870,16 @@ h3 {
 }
 
 .product-section__time {
-  align-self: stretch;
+  align-self: start;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: clamp(64px, 10vw, 148px);
   line-height: 0.78;
   font-weight: 950;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-variant-numeric: tabular-nums;
+  margin-top: clamp(50px, 5.8vw, 84px);
 }
 
 .product-section__copy h2 {
@@ -1084,18 +1071,19 @@ h3 {
 .sticker {
   right: 0;
   bottom: 8%;
+  max-width: min(310px, 86vw);
 }
 
 .sticker--morning {
-  background: var(--paper);
+  background: var(--morning-hot);
 }
 
 .sticker--day {
-  background: var(--cream);
+  background: var(--day);
 }
 
 .sticker--evening {
-  background: #eadcff;
+  background: var(--evening);
 }
 
 .composition {
@@ -1458,6 +1446,29 @@ h3 {
   font-weight: 950;
 }
 
+.video-band__copy sup {
+  position: relative;
+  top: -0.18em;
+  margin-left: 0.06em;
+  font-size: 0.42em;
+  line-height: 0;
+}
+
+.video-band__note {
+  max-width: 720px;
+  margin-top: clamp(2px, 0.6vw, 8px);
+  display: grid;
+  gap: 6px;
+  color: rgba(77, 112, 88, 0.92);
+  font-size: clamp(14px, 1.18vw, 19px);
+  line-height: 1.12;
+  font-weight: 950;
+}
+
+.video-band__note span {
+  display: block;
+}
+
 .kit {
   min-height: 82vh;
   display: grid;
@@ -1518,6 +1529,8 @@ h3 {
 }
 
 .footer {
+  position: relative;
+  z-index: 0;
   min-height: 300px;
   display: grid;
   grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr) auto;
@@ -1557,8 +1570,12 @@ h3 {
   background: rgba(235, 255, 37, 0.18);
 }
 
-.footer__brand img {
+.footer__brand .ampm-logo-mark {
   width: min(28vw, 210px);
+  color: white;
+}
+
+.footer__brand img {
   filter: invert(1);
 }
 
@@ -1646,7 +1663,7 @@ h3 {
 
 @keyframes tickerMove {
   to {
-    background-position-x: -1200px;
+    transform: translateX(-50%);
   }
 }
 
@@ -1665,7 +1682,7 @@ h3 {
   }
 
   .poster .hero-product {
-    font-size: clamp(42px, 6.4vw, 72px);
+    font-size: clamp(11px, 3.35vw, 19px);
     margin-bottom: 8px;
     transform: none;
   }
@@ -1678,6 +1695,13 @@ h3 {
     height: 430px;
     min-height: 0;
     margin-top: 0;
+  }
+
+  .poster__dial {
+    top: -170px;
+    right: -230px;
+    width: min(96vw, 620px);
+    opacity: 0.22;
   }
 
   .poster__stamp--one {
@@ -1693,7 +1717,7 @@ h3 {
 
   .poster__stamp--three {
     left: 10%;
-    bottom: 4%;
+    bottom: 12%;
   }
 
   .rhythm-track,
@@ -1748,13 +1772,13 @@ h3 {
 
   .poster {
     min-height: 100svh;
-    padding-top: calc(var(--header) + 12px);
+    padding-top: calc(var(--header) + 24px);
     padding-bottom: 54px;
   }
 
   .poster .hero-product {
-    margin-bottom: 4px;
-    font-size: clamp(46px, 4.7vw, 82px);
+    margin-bottom: 8px;
+    font-size: clamp(11px, 3.35vw, 19px);
     transform: none;
   }
 
@@ -1808,7 +1832,7 @@ h3 {
     padding-inline: 16px;
   }
 
-  .brand img {
+  .brand .ampm-logo-mark {
     width: 64px;
   }
 
@@ -1829,8 +1853,15 @@ h3 {
   .poster {
     height: auto;
     min-height: 100svh;
-    padding-top: calc(var(--header) + 18px);
+    padding-top: calc(var(--header) + 24px);
     padding-bottom: 86px;
+  }
+
+  .poster__dial {
+    top: -126px;
+    right: -220px;
+    width: 390px;
+    opacity: 0.14;
   }
 
   .poster__copy h1 {
@@ -1838,10 +1869,11 @@ h3 {
   }
 
   .poster .hero-product {
-    font-size: clamp(34px, 8.4vw, 58px);
-    white-space: normal;
+    font-size: clamp(11px, 3.35vw, 19px);
+    white-space: nowrap;
     margin-bottom: 6px;
     transform: none;
+    word-break: normal;
     overflow-wrap: normal;
   }
 
@@ -1881,9 +1913,9 @@ h3 {
   }
 
   .poster__stamp {
-    max-width: 140px;
+    max-width: min(240px, 78vw);
     padding: 8px 10px;
-    font-size: 13px;
+    font-size: clamp(11px, 3.35vw, 13px);
     box-shadow: 5px 5px 0 var(--ink);
   }
 
@@ -1900,11 +1932,11 @@ h3 {
 
   .poster__stamp--three {
     left: 2%;
-    bottom: 0;
+    bottom: 16%;
   }
 
   .poster__ticker {
-    font-size: clamp(30px, 10vw, 42px);
+    --ticker-size: clamp(30px, 10vw, 42px);
     bottom: 10px;
   }
 
@@ -1942,7 +1974,7 @@ h3 {
     box-shadow: 4px 4px 0 var(--ink);
   }
 
-  .about__orbit img {
+  .about__orbit .ampm-logo-mark {
     width: min(34vw, 150px);
   }
 
@@ -1983,6 +2015,7 @@ h3 {
     transform: none;
     align-self: auto;
     font-size: clamp(66px, 21vw, 104px);
+    margin-top: 0;
   }
 
   .product-section__time.reveal {
@@ -1995,7 +2028,7 @@ h3 {
 
   .product-section__copy h2 {
     font-size: clamp(44px, 13vw, 68px);
-    overflow-wrap: break-word;
+    overflow-wrap: normal;
   }
 
   .product-section__visual {
@@ -2066,8 +2099,8 @@ h3 {
   .sticker {
     right: 1%;
     bottom: 5%;
-    max-width: 180px;
-    font-size: 18px;
+    max-width: min(290px, 88vw);
+    font-size: clamp(14px, 4.4vw, 18px);
     box-shadow: 5px 5px 0 var(--ink);
   }
 
@@ -2084,6 +2117,10 @@ h3 {
     font-size: clamp(32px, 12vw, 52px);
   }
 
+  .video-band__note {
+    font-size: clamp(13px, 3.9vw, 16px);
+  }
+
   .advantage-card {
     min-height: 210px;
     grid-template-rows: 58px auto 1fr;
@@ -2093,7 +2130,7 @@ h3 {
     width: 96vw;
   }
 
-  .footer__brand img {
+  .footer__brand .ampm-logo-mark {
     width: 140px;
   }
 
@@ -2107,8 +2144,36 @@ h3 {
 }
 
 @media (max-width: 420px) {
+  body {
+    padding-bottom: 76px;
+  }
+
+  .site-header {
+    backdrop-filter: none;
+  }
+
   .nav {
-    display: none;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    z-index: 15;
+    display: flex;
+    justify-content: space-around;
+    gap: 4px;
+    padding: 11px 6px;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    background: rgba(247, 240, 230, 0.96);
+    box-shadow: 4px 4px 0 var(--ink);
+    backdrop-filter: blur(18px);
+    font-size: 10px;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
   }
 
   .time-pill {
@@ -2120,8 +2185,8 @@ h3 {
   }
 
   .poster .hero-product {
-    font-size: clamp(28px, 8vw, 38px);
-    line-height: 0.88;
+    font-size: clamp(11px, 3.35vw, 19px);
+    line-height: 1;
   }
 
   .poster__tagline {
@@ -2162,14 +2227,18 @@ h3 {
   }
 
   .sticker {
-    max-width: 160px;
-    font-size: 16px;
+    max-width: min(270px, 86vw);
+    font-size: clamp(12px, 4vw, 16px);
   }
 }
 
 @media (max-width: 360px) {
   .poster {
     min-height: 100svh;
+  }
+
+  .poster .hero-product {
+    font-size: 11px;
   }
 
   .poster__copy h1 {
@@ -2182,6 +2251,20 @@ h3 {
 
   .poster__visual {
     height: 220px;
+  }
+
+  .about__text h2,
+  .section-heading h2,
+  .advantages .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .about__text h2,
+  .product-section__copy h2,
+  .composition__copy h2,
+  .advantage-card h3,
+  .footer__contacts {
+    overflow-wrap: anywhere;
   }
 }
 
