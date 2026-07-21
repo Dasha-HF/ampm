@@ -2070,14 +2070,15 @@ h3 {
   }
 
   .video-band {
-    min-height: 100svh;
+    min-height: 0;
     padding-inline: 0;
   }
 
   .video-band video {
     width: 100%;
-    height: 100svh;
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 5 / 3;
+    object-fit: contain;
   }
 
   .advantage-card {
