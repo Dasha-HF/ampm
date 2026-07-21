@@ -457,15 +457,16 @@ h3 {
 .poster__stamp--two {
   left: 38%;
   right: auto;
-  top: auto;
-  bottom: 5%;
+  top: -6%;
+  bottom: auto;
   transform: rotate(-3deg);
   background: var(--day);
 }
 
 .poster__stamp--three {
-  right: -6%;
-  bottom: 39%;
+  right: -4%;
+  top: 8%;
+  bottom: auto;
   transform: rotate(4deg);
   background: var(--evening);
 }
@@ -748,20 +749,9 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
-.product-section__period,
 .product-section__time-value {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-}
-
-.product-section__period {
-  position: relative;
-  left: -6px;
-  font-size: clamp(16px, 1.18vw, 22px);
-  line-height: 1;
-  font-weight: 950;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .product-section__time-value {
@@ -1678,14 +1668,15 @@ h3 {
   .poster__stamp--two {
     left: 40%;
     right: auto;
-    top: auto;
-    bottom: 4%;
+    top: -6%;
+    bottom: auto;
   }
 
   .poster__stamp--three {
     left: auto;
     right: 0;
-    bottom: 38%;
+    top: 9%;
+    bottom: auto;
   }
 
   .rhythm-track,
@@ -1877,13 +1868,14 @@ h3 {
   }
 
   .poster__visual {
-    height: min(27vh, 230px);
-    min-height: 190px;
-    margin-top: 18px;
+    height: 370px;
+    min-height: 370px;
+    margin-top: 12px;
+    padding-top: 120px;
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -24px;
+    --poster-bottle-lift: 0px;
     width: auto;
     height: auto;
     max-height: 240px;
@@ -1899,22 +1891,23 @@ h3 {
   }
 
   .poster__stamp--one {
-    left: 1%;
+    left: 0;
     right: auto;
-    top: -38%;
+    top: 0;
   }
 
   .poster__stamp--two {
-    left: 33%;
+    left: 8%;
     right: auto;
-    top: auto;
-    bottom: -8%;
+    top: 42px;
+    bottom: auto;
   }
 
   .poster__stamp--three {
-    left: auto;
-    right: 0;
-    bottom: 40%;
+    left: 16%;
+    right: auto;
+    top: 84px;
+    bottom: auto;
   }
 
   .poster__ticker {
@@ -1974,15 +1967,9 @@ h3 {
     margin-top: 0;
   }
 
-  .product-section__period,
   .product-section__time-value {
     writing-mode: initial;
     transform: none;
-  }
-
-  .product-section__period {
-    left: 0;
-    font-size: clamp(16px, 5vw, 22px);
   }
 
   .product-section__time-value {
