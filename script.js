@@ -96,23 +96,60 @@ compositionDetails.forEach((details) => {
   });
 });
 
+const playVideo = (video) => {
+  video.muted = true;
+  video.defaultMuted = true;
+
+  video.play().then(() => {
+    delete video.dataset.autoplayBlocked;
+  }).catch(() => {
+    video.dataset.autoplayBlocked = "true";
+  });
+};
+
 const syncVideoPlayback = () => {
   videos.forEach((video) => {
-    if (prefersReducedMotion.matches || document.hidden) {
+    if (document.hidden) {
       video.pause();
       return;
     }
 
-    video.play().catch(() => {
-      video.dataset.autoplayBlocked = "true";
-    });
+    playVideo(video);
   });
 };
 
+videos.forEach((video) => {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.preload = "auto";
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+
+  video.addEventListener("canplay", () => {
+    if (!document.hidden && video.paused) {
+      playVideo(video);
+    }
+  });
+});
+
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && !document.hidden) {
+      playVideo(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+videos.forEach((video) => videoObserver.observe(video));
+
 document.addEventListener("visibilitychange", syncVideoPlayback);
+window.addEventListener("pageshow", syncVideoPlayback);
 window.addEventListener("load", syncVideoPlayback);
 window.addEventListener("pointerdown", syncVideoPlayback, { once: true });
-prefersReducedMotion.addEventListener("change", syncVideoPlayback);
+
+syncVideoPlayback();
 
 const lockHorizontalScroll = () => {
   const hasHorizontalShift =

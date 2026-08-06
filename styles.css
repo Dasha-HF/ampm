@@ -402,7 +402,7 @@ h3 {
   position: relative;
   z-index: 2;
   min-height: 0;
-  height: min(68vh, 760px);
+  height: min(76vh, 860px);
   display: grid;
   place-items: center;
   align-self: center;
@@ -411,7 +411,7 @@ h3 {
 
 .poster__sun {
   position: absolute;
-  width: min(48vw, 640px);
+  width: min(54vw, 760px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgba(235, 255, 37, 0.24);
@@ -421,54 +421,14 @@ h3 {
 }
 
 .poster__bottles {
-  --poster-bottle-lift: -72px;
+  --poster-bottle-lift: -250px;
   position: relative;
   z-index: 1;
-  width: min(50vw, 840px);
+  width: min(58vw, 1020px);
   max-height: 100%;
   object-fit: contain;
   transform: translateY(var(--poster-bottle-lift));
   animation: posterBottlesFloat 5s ease-in-out infinite;
-}
-
-.poster__stamp {
-  position: absolute;
-  z-index: 4;
-  max-width: min(300px, 82vw);
-  border: 2px solid var(--ink);
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  background: var(--paper);
-  font-size: clamp(12px, 1.05vw, 17px);
-  line-height: 1;
-  font-weight: 950;
-  white-space: nowrap;
-  box-shadow: 8px 8px 0 var(--ink);
-}
-
-.poster__stamp--one {
-  left: -1%;
-  right: auto;
-  top: 8%;
-  transform: rotate(-5deg);
-  background: var(--morning-hot);
-}
-
-.poster__stamp--two {
-  left: 38%;
-  right: auto;
-  top: -6%;
-  bottom: auto;
-  transform: rotate(-3deg);
-  background: var(--day);
-}
-
-.poster__stamp--three {
-  right: -4%;
-  top: 8%;
-  bottom: auto;
-  transform: rotate(4deg);
-  background: var(--evening);
 }
 
 .poster__ticker {
@@ -690,7 +650,7 @@ h3 {
   --product-subheading-size: clamp(24px, 1.9vw, 34px);
   --product-body-size: clamp(16px, 1.12vw, 22px);
   --product-card-title-size: clamp(17px, 1.28vw, 24px);
-  --product-card-caption-size: clamp(13px, 0.95vw, 18px);
+  --product-card-caption-size: clamp(12px, 0.82vw, 15px);
   min-height: 100svh;
   margin-bottom: -1px;
   scroll-margin-top: var(--header);
@@ -858,9 +818,10 @@ h3 {
   background: rgba(255, 255, 255, 0.36);
   color: rgba(5, 5, 5, 0.66);
   font-size: var(--product-card-caption-size);
-  line-height: 1;
+  line-height: 1.04;
   font-weight: 950;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .product-composition__grid strong {
@@ -1501,6 +1462,16 @@ h3 {
   margin: 0 0 16px;
 }
 
+.footer__policy {
+  width: fit-content;
+  margin-top: 12px;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 3px;
+  font-size: clamp(13px, 1vw, 17px);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .footer__top {
   min-width: 170px;
   display: inline-flex;
@@ -1590,11 +1561,11 @@ h3 {
   }
 
   .poster__visual {
-    height: min(70vh, 820px);
+    height: min(78vh, 900px);
   }
 
   .poster__bottles {
-    width: min(47vw, 900px);
+    width: min(55vw, 1080px);
   }
 
   .poster__dial {
@@ -1627,7 +1598,7 @@ h3 {
   }
 
   .poster__visual {
-    height: 430px;
+    height: 520px;
     min-height: 0;
     margin-top: 0;
   }
@@ -1637,26 +1608,6 @@ h3 {
     right: -230px;
     width: min(96vw, 620px);
     opacity: 0.22;
-  }
-
-  .poster__stamp--one {
-    left: 8%;
-    right: auto;
-    top: 6%;
-  }
-
-  .poster__stamp--two {
-    left: 40%;
-    right: auto;
-    top: -6%;
-    bottom: auto;
-  }
-
-  .poster__stamp--three {
-    left: auto;
-    right: 0;
-    top: 9%;
-    bottom: auto;
   }
 
   .rhythm-track,
@@ -1740,8 +1691,8 @@ h3 {
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -105px;
-    width: min(46vw, 600px);
+    --poster-bottle-lift: -150px;
+    width: min(52vw, 720px);
   }
 
   .kit {
@@ -1848,46 +1799,19 @@ h3 {
   }
 
   .poster__visual {
-    height: 370px;
-    min-height: 370px;
-    margin-top: 12px;
-    padding-top: 120px;
+    height: 340px;
+    min-height: 340px;
+    margin-top: 18px;
+    padding-top: 0;
   }
 
   .poster__bottles {
-    --poster-bottle-lift: 0px;
-    width: auto;
-    height: auto;
-    max-height: 240px;
-    max-width: 86vw;
+    --poster-bottle-lift: -82px;
+    width: min(110vw, 620px);
+    height: 100%;
+    max-height: 340px;
+    max-width: none;
     object-fit: contain;
-  }
-
-  .poster__stamp {
-    max-width: min(240px, 78vw);
-    padding: 8px 10px;
-    font-size: clamp(11px, 3.35vw, 13px);
-    box-shadow: 5px 5px 0 var(--ink);
-  }
-
-  .poster__stamp--one {
-    left: 0;
-    right: auto;
-    top: 0;
-  }
-
-  .poster__stamp--two {
-    left: 8%;
-    right: auto;
-    top: 42px;
-    bottom: auto;
-  }
-
-  .poster__stamp--three {
-    left: 16%;
-    right: auto;
-    top: 84px;
-    bottom: auto;
   }
 
   .poster__ticker {
@@ -2195,7 +2119,8 @@ h3 {
   }
 
   .poster__visual {
-    height: 220px;
+    height: 280px;
+    min-height: 280px;
   }
 
   .section-heading h2,
