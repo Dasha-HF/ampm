@@ -927,6 +927,26 @@ h3 {
   object-fit: cover;
 }
 
+.autoplay-static-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+  transition: opacity 120ms linear, visibility 0s linear 0s;
+}
+
+.autoplay-static-frame.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms linear, visibility 0s linear 120ms;
+}
+
 .product-motion--day {
   top: 6%;
   transform: rotate(2deg);
@@ -1315,7 +1335,8 @@ h3 {
   pointer-events: none;
 }
 
-.video-band video {
+.video-band video,
+.video-band img {
   width: 100%;
   height: 100svh;
   display: block;
@@ -1324,6 +1345,11 @@ h3 {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+.video-band .autoplay-static-frame {
+  position: absolute;
+  inset: 0;
 }
 
 .kit {
@@ -1972,7 +1998,8 @@ h3 {
     background: #fff;
   }
 
-  .video-band video {
+  .video-band video,
+  .video-band img {
     width: 100%;
     height: 100svh;
     aspect-ratio: auto;

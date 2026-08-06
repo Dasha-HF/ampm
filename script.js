@@ -3,11 +3,22 @@ const loaderTime = document.querySelector("#loaderTime");
 const revealItems = document.querySelectorAll(".reveal");
 const themeSections = document.querySelectorAll("[data-theme]");
 const compositionDetails = document.querySelectorAll(".composition-details");
-const videos = document.querySelectorAll("video");
+const videos = document.querySelectorAll("video[autoplay]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 document.body.classList.add("is-loading");
 document.body.classList.add("theme-morning");
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const navigationEntry = performance.getEntriesByType("navigation")[0];
+
+if (navigationEntry?.type === "reload") {
+  history.replaceState(null, "", `${location.pathname}${location.search}`);
+  window.scrollTo(0, 0);
+}
 
 const loaderTimes = ["08:00", "11:24", "14:30", "18:06", "20:00"];
 let loaderIndex = 0;
@@ -16,17 +27,6 @@ const tickLoader = window.setInterval(() => {
   loaderIndex = (loaderIndex + 1) % loaderTimes.length;
   loaderTime.textContent = loaderTimes[loaderIndex];
 }, 260);
-
-window.addEventListener("load", () => {
-  window.setTimeout(() => {
-    window.clearInterval(tickLoader);
-    loaderTime.textContent = "AM.PM";
-    window.setTimeout(() => {
-      loader.classList.add("is-hidden");
-      document.body.classList.remove("is-loading");
-    }, 520);
-  }, 1450);
-});
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -96,60 +96,156 @@ compositionDetails.forEach((details) => {
   });
 });
 
-const playVideo = (video) => {
+const prepareAutoplayVideo = (video) => {
   video.muted = true;
   video.defaultMuted = true;
-
-  video.play().then(() => {
-    delete video.dataset.autoplayBlocked;
-  }).catch(() => {
-    video.dataset.autoplayBlocked = "true";
-  });
+  video.autoplay = true;
+  video.loop = true;
+  video.controls = false;
+  video.playsInline = true;
+  video.defaultPlaybackRate = 1;
+  video.playbackRate = 1;
+  video.setAttribute("muted", "");
+  video.setAttribute("autoplay", "");
+  video.setAttribute("loop", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
 };
 
-const syncVideoPlayback = () => {
+const getStaticFrame = (video) => {
+  return video.parentElement?.querySelector(".autoplay-static-frame") ?? null;
+};
+
+const showStaticFrame = (video) => {
+  getStaticFrame(video)?.classList.remove("is-hidden");
+};
+
+const hideStaticFrame = (video) => {
+  getStaticFrame(video)?.classList.add("is-hidden");
+};
+
+const startVideo = (video, allowBlockedRetry = false) => {
+  prepareAutoplayVideo(video);
+
+  if (document.hidden || (video.dataset.autoplayBlocked === "true" && !allowBlockedRetry)) {
+    return Promise.resolve(false);
+  }
+
+  video.playbackRate = 1;
+  let playRequest;
+
+  try {
+    playRequest = video.play();
+  } catch {
+    video.dataset.autoplayBlocked = "true";
+    showStaticFrame(video);
+    return Promise.resolve(false);
+  }
+
+  if (playRequest) {
+    return playRequest.then(() => {
+      delete video.dataset.autoplayBlocked;
+      hideStaticFrame(video);
+      return true;
+    }).catch((error) => {
+      video.dataset.autoplayBlocked = "true";
+      showStaticFrame(video);
+      if (error?.name !== "NotAllowedError" && error?.name !== "AbortError") {
+        console.warn("Не удалось запустить видео:", error);
+      }
+      return false;
+    });
+  }
+
+  const isPlaying = !video.paused;
+  if (!isPlaying) {
+    video.dataset.autoplayBlocked = "true";
+    showStaticFrame(video);
+  } else {
+    hideStaticFrame(video);
+  }
+  return Promise.resolve(isPlaying);
+};
+
+const startAllVideos = (allowBlockedRetry = false) => {
+  return Promise.all(Array.from(videos, (video) => startVideo(video, allowBlockedRetry)));
+};
+
+const resumeVideosFromUserGesture = () => {
   videos.forEach((video) => {
-    if (document.hidden) {
-      video.pause();
+    if (!video.paused && !video.ended) {
       return;
     }
 
-    playVideo(video);
+    // Вызов play() остаётся непосредственно внутри настоящего жеста пользователя.
+    // Это важно для Safari и других браузеров со строгой политикой автозапуска.
+    startVideo(video, true);
   });
 };
 
-videos.forEach((video) => {
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-  video.preload = "auto";
-  video.setAttribute("muted", "");
-  video.setAttribute("playsinline", "");
-  video.setAttribute("webkit-playsinline", "");
+let loaderDismissed = false;
 
-  video.addEventListener("canplay", () => {
-    if (!document.hidden && video.paused) {
-      playVideo(video);
+const hideLoader = () => {
+  if (loaderDismissed) {
+    return;
+  }
+
+  loaderDismissed = true;
+  loader.classList.add("is-hidden");
+  document.body.classList.remove("is-loading");
+};
+
+videos.forEach((video) => {
+  prepareAutoplayVideo(video);
+  showStaticFrame(video);
+
+  video.addEventListener("loadedmetadata", () => startVideo(video));
+  video.addEventListener("canplay", () => startVideo(video));
+  video.addEventListener("pause", () => {
+    showStaticFrame(video);
+  });
+  video.addEventListener("ended", () => showStaticFrame(video));
+  video.addEventListener("error", () => showStaticFrame(video));
+  video.addEventListener("ratechange", () => {
+    if (video.playbackRate !== 1) {
+      video.playbackRate = 1;
     }
+  });
+  video.addEventListener("playing", () => {
+    delete video.dataset.autoplayBlocked;
+    video.playbackRate = 1;
+    hideStaticFrame(video);
   });
 });
 
-const videoObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting && !document.hidden) {
-      playVideo(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
+window.addEventListener("load", () => {
+  window.setTimeout(() => {
+    window.clearInterval(tickLoader);
+    loaderTime.textContent = "AM.PM";
+    window.setTimeout(() => {
+      startAllVideos();
+      hideLoader();
+    }, 520);
+  }, 1450);
+});
 
-videos.forEach((video) => videoObserver.observe(video));
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    startAllVideos();
+  }
+});
+window.addEventListener("pageshow", () => {
+  startAllVideos();
+});
+window.addEventListener("focus", () => {
+  startAllVideos();
+});
+document.addEventListener("pointerdown", resumeVideosFromUserGesture, { passive: true });
+document.addEventListener("touchend", resumeVideosFromUserGesture, { passive: true });
+document.addEventListener("click", resumeVideosFromUserGesture);
+document.addEventListener("keydown", resumeVideosFromUserGesture);
 
-document.addEventListener("visibilitychange", syncVideoPlayback);
-window.addEventListener("pageshow", syncVideoPlayback);
-window.addEventListener("load", syncVideoPlayback);
-window.addEventListener("pointerdown", syncVideoPlayback, { once: true });
-
-syncVideoPlayback();
+startAllVideos();
 
 const lockHorizontalScroll = () => {
   const hasHorizontalShift =
