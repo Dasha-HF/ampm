@@ -402,7 +402,7 @@ h3 {
   position: relative;
   z-index: 2;
   min-height: 0;
-  height: min(76vh, 860px);
+  height: min(72vh, 780px);
   display: grid;
   place-items: center;
   align-self: center;
@@ -421,10 +421,10 @@ h3 {
 }
 
 .poster__bottles {
-  --poster-bottle-lift: -250px;
+  --poster-bottle-lift: -180px;
   position: relative;
   z-index: 1;
-  width: min(58vw, 1020px);
+  width: min(50vw, 850px);
   max-height: 100%;
   object-fit: contain;
   transform: translateY(var(--poster-bottle-lift));
@@ -1588,11 +1588,12 @@ h3 {
   }
 
   .poster__visual {
-    height: min(78vh, 900px);
+    height: min(70vh, 780px);
   }
 
   .poster__bottles {
-    width: min(55vw, 1080px);
+    --poster-bottle-lift: -300px;
+    width: min(40vw, 760px);
   }
 
   .poster__dial {
@@ -1604,6 +1605,12 @@ h3 {
   .product-section {
     grid-template-columns: minmax(92px, 0.14fr) minmax(520px, 0.92fr) minmax(520px, 0.94fr);
     padding-inline: clamp(54px, 4.6vw, 92px);
+  }
+}
+
+@media (min-width: 1440px) and (min-height: 1000px) {
+  .poster__bottles {
+    --poster-bottle-lift: -340px;
   }
 }
 
@@ -1625,9 +1632,14 @@ h3 {
   }
 
   .poster__visual {
-    height: 520px;
+    height: clamp(420px, 52vw, 500px);
     min-height: 0;
     margin-top: 0;
+  }
+
+  .poster__bottles {
+    --poster-bottle-lift: -95px;
+    width: min(72vw, 640px);
   }
 
   .poster__dial {
@@ -1718,7 +1730,7 @@ h3 {
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -150px;
+    --poster-bottle-lift: -24px;
     width: min(52vw, 720px);
   }
 
@@ -1749,6 +1761,19 @@ h3 {
     font-size: clamp(20px, min(2vw, 4.2svh), 32px);
   }
 
+}
+
+@media (max-height: 760px) and (min-width: 1121px) {
+  .poster__bottles {
+    --poster-bottle-lift: -130px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 761px) and (max-width: 1120px) {
+  .poster__bottles {
+    --poster-bottle-lift: -75px;
+    width: min(68vw, 600px);
+  }
 }
 
 @media (max-width: 760px) {
@@ -1833,7 +1858,7 @@ h3 {
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -82px;
+    --poster-bottle-lift: 0px;
     width: min(110vw, 620px);
     height: 100%;
     max-height: 340px;
