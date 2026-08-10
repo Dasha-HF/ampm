@@ -285,6 +285,8 @@ h3 {
 
 .poster {
   --hero-step-gap: clamp(18px, 2.1vh, 26px);
+  --poster-inline: clamp(18px, 5vw, 72px);
+  --poster-ticker-size: clamp(26px, 3.2vw, 46px);
   height: auto;
   max-height: none;
   min-height: 100svh;
@@ -292,10 +294,12 @@ h3 {
   max-width: 100vw;
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+  grid-template-rows: minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(18px, 3.5vw, 58px);
+  padding-inline: var(--poster-inline);
   padding-top: calc(var(--header) + clamp(30px, 5.5vh, 70px));
-  padding-bottom: clamp(46px, 6vh, 62px);
+  padding-bottom: clamp(18px, 2.5vh, 32px);
   background: var(--paper);
   overflow: hidden;
   isolation: isolate;
@@ -342,6 +346,8 @@ h3 {
 .poster__copy {
   position: relative;
   z-index: 5;
+  grid-column: 1;
+  grid-row: 1;
   align-self: center;
   justify-self: center;
   width: min(100%, 940px);
@@ -401,12 +407,16 @@ h3 {
 .poster__visual {
   position: relative;
   z-index: 2;
+  grid-column: 2;
+  grid-row: 1;
   min-height: 0;
-  height: min(72vh, 780px);
+  height: auto;
+  min-height: clamp(480px, 70svh, 780px);
   display: grid;
   place-items: center;
   align-self: center;
   margin-top: 0;
+  overflow: hidden;
 }
 
 .poster__sun {
@@ -421,25 +431,29 @@ h3 {
 }
 
 .poster__bottles {
-  --poster-bottle-lift: -180px;
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  width: min(50vw, 850px);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  transform: translateY(var(--poster-bottle-lift));
-  animation: posterBottlesFloat 5s ease-in-out infinite;
 }
 
 .poster__ticker {
-  --ticker-size: clamp(26px, 3.2vw, 46px);
-  position: absolute;
+  --ticker-size: var(--poster-ticker-size);
+  position: relative;
   z-index: 0;
-  left: 0;
-  right: 0;
-  bottom: clamp(10px, 2vh, 20px);
-  width: 100%;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: auto;
   height: calc(var(--ticker-size) * 1.08);
+  margin-right: calc(0px - var(--poster-inline));
+  margin-left: calc(0px - var(--poster-inline));
   overflow: hidden;
   contain: strict;
   white-space: nowrap;
@@ -469,6 +483,7 @@ h3 {
   color: var(--ink);
   overflow: visible;
   padding-bottom: clamp(96px, 9vw, 150px);
+  isolation: isolate;
 }
 
 .rhythm::before {
@@ -478,10 +493,9 @@ h3 {
   top: 24%;
   width: min(30vw, 390px);
   aspect-ratio: 1;
+  z-index: 0;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 38% 42%, rgba(235, 255, 37, 0.42) 0 34%, transparent 35%),
-    radial-gradient(circle at 64% 66%, rgba(36, 197, 200, 0.16) 0 30%, transparent 31%);
+  background: radial-gradient(circle at 58% 56%, rgba(36, 197, 200, 0.16) 0 31%, transparent 32%);
   opacity: 0.72;
   pointer-events: none;
 }
@@ -493,12 +507,17 @@ h3 {
   bottom: clamp(42px, 6vw, 96px);
   width: min(34vw, 450px);
   aspect-ratio: 1;
+  z-index: 0;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 36% 42%, rgba(182, 155, 230, 0.28) 0 34%, transparent 35%),
-    radial-gradient(circle at 66% 56%, rgba(235, 255, 37, 0.16) 0 31%, transparent 32%);
+  background: radial-gradient(circle at 42% 46%, rgba(182, 155, 230, 0.28) 0 34%, transparent 35%);
   opacity: 0.78;
   pointer-events: none;
+}
+
+.rhythm .section-heading,
+.rhythm-track {
+  position: relative;
+  z-index: 1;
 }
 
 .section-heading {
@@ -1563,12 +1582,6 @@ h3 {
   }
 }
 
-@keyframes posterBottlesFloat {
-  50% {
-    transform: translateY(calc(var(--poster-bottle-lift) - 18px)) rotate(-1deg);
-  }
-}
-
 @keyframes tickerMove {
   to {
     transform: translateX(-50%);
@@ -1583,17 +1596,9 @@ h3 {
 
 @media (min-width: 1440px) {
   .poster {
+    --poster-inline: clamp(54px, 4.6vw, 92px);
     grid-template-columns: minmax(520px, 0.82fr) minmax(740px, 1.18fr);
-    padding-inline: clamp(54px, 4.6vw, 92px);
-  }
-
-  .poster__visual {
-    height: min(70vh, 780px);
-  }
-
-  .poster__bottles {
-    --poster-bottle-lift: -300px;
-    width: min(40vw, 760px);
+    padding-inline: var(--poster-inline);
   }
 
   .poster__dial {
@@ -1605,12 +1610,6 @@ h3 {
   .product-section {
     grid-template-columns: minmax(92px, 0.14fr) minmax(520px, 0.92fr) minmax(520px, 0.94fr);
     padding-inline: clamp(54px, 4.6vw, 92px);
-  }
-}
-
-@media (min-width: 1440px) and (min-height: 1000px) {
-  .poster__bottles {
-    --poster-bottle-lift: -340px;
   }
 }
 
@@ -1632,14 +1631,19 @@ h3 {
   }
 
   .poster__visual {
-    height: clamp(420px, 52vw, 500px);
-    min-height: 0;
+    grid-column: 1;
+    grid-row: 2;
+    height: auto;
+    min-height: clamp(420px, 70vw, 620px);
     margin-top: 0;
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -95px;
-    width: min(72vw, 640px);
+    width: 100%;
+  }
+
+  .poster__ticker {
+    grid-row: 3;
   }
 
   .poster__dial {
@@ -1702,7 +1706,7 @@ h3 {
   .poster {
     min-height: 100svh;
     padding-top: calc(var(--header) + 24px);
-    padding-bottom: 54px;
+    padding-bottom: 82px;
   }
 
   .poster .hero-product {
@@ -1730,8 +1734,7 @@ h3 {
   }
 
   .poster__bottles {
-    --poster-bottle-lift: -24px;
-    width: min(52vw, 720px);
+    width: 100%;
   }
 
   .kit {
@@ -1763,16 +1766,9 @@ h3 {
 
 }
 
-@media (max-height: 760px) and (min-width: 1121px) {
-  .poster__bottles {
-    --poster-bottle-lift: -130px;
-  }
-}
-
 @media (max-height: 760px) and (min-width: 761px) and (max-width: 1120px) {
   .poster__bottles {
-    --poster-bottle-lift: -75px;
-    width: min(68vw, 600px);
+    width: 100%;
   }
 }
 
@@ -1858,17 +1854,16 @@ h3 {
   }
 
   .poster__bottles {
-    --poster-bottle-lift: 0px;
-    width: min(110vw, 620px);
+    width: 100%;
     height: 100%;
-    max-height: 340px;
-    max-width: none;
+    max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
   }
 
   .poster__ticker {
     --ticker-size: clamp(30px, 10vw, 42px);
-    bottom: 10px;
+    bottom: auto;
   }
 
   .section-heading h2,
@@ -1912,6 +1907,10 @@ h3 {
     min-height: auto;
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .product-section--evening::after {
+    display: none;
   }
 
   .product-section__time {
